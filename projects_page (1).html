@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Experience - Karthik Menon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffd700;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Header Section */
+        .page-header {
+            padding: 8rem 2rem 3rem;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section.white {
+            background: #ffffff;
+            color: #333;
+        }
+
+        .section.gray {
+            background: #f8f8f8;
+            color: #333;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section.white .section-title {
+            color: #000;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #ffd700, #ffed4a);
+            border-radius: 2px;
+        }
+
+        /* Experience Cards */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #ffd700;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+            border-radius: 0 15px 0 100px;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-title-group {
+            flex: 1;
+        }
+
+        .experience-title {
+            color: #000;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            text-align: right;
+            color: #666;
+        }
+
+        .experience-duration {
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 0.2rem;
+        }
+
+        .experience-location {
+            font-size: 0.9rem;
+        }
+
+        .experience-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-highlights {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-highlights li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .experience-highlights li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-size: 0.8rem;
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            color: white;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+
+        .project-date {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #ffd700, #ffed4a);
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-impact {
+            background: #f8f8f8;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #ffd700;
+        }
+
+        .project-impact strong {
+            color: #000;
+        }
+
+        /* Education & Certifications */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #ffd700;
+        }
+
+        .education-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .education-degree {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-institution {
+            color: #ffd700;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .education-grade {
+            background: linear-gradient(135deg, #000, #1a1a1a);
+            color: #ffd700;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        .skills-category {
+            margin-bottom: 3rem;
+        }
+
+        .skills-category h3 {
+            font-size: 1.4rem;
+            color: #000;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #ffd700;
+            display: inline-block;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .skill-item:hover {
+            border-color: #ffd700;
+            background: #ffd700;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #ffd700, #ffed4a);
+            color: #000;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(100px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid #ffd700;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffed4a;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .experience-meta {
+                text-align: left;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-list {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">Karthik Menon</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects" class="active">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Projects & Experience</h1>
+            <p>A comprehensive overview of my professional journey, key projects, and expertise in HR strategy, digital transformation, and organizational development.</p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section white" id="experience">
+        <div class="container">
+            <h2 class="section-title fade-in">Professional Experience</h2>
+            <div class="experience-grid">
+                
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div class="experience-title-group">
+                            <h3 class="experience-title">HRBP (Intern)</h3>
+                            <div class="experience-company">JD.com (Benelux)</div>
+                        </div>
+                        <div class="experience-meta">
+                            <div class="experience-duration">September 2025 - Present</div>
+                            <div class="experience-location">Rotterdam, The Netherlands</div>
+                        </div>
+                    </div>
+                    <div class="experience-description">
+                        Currently optimizing HR operations across international markets, focusing on cross-border workflow efficiency and talent mobility solutions.
+                    </div>
+                    <ul class="experience-highlights">
+                        <li>Conduct comprehensive HR process reviews and compliance checks using advanced Workday functionalities</li>
+                        <li>Optimize cross-border HR workflows, identifying gaps and standardizing procedures across multiple regions</li>
+                        <li>Support international talent and mobility management, coordinating expatriate assignments and relocation processes</li>
+                        <li>Align cross-country policies to ensure consistent employee experience across diverse markets</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div class="experience-title-group">
+                            <h3 class="experience-title">HR Strategy Intern</h3>
+                            <div class="experience-company">Cummins Emission Solutions</div>
+                        </div>
+                        <div class="experience-meta">
+                            <div class="experience-duration">February 2025 - July 2025</div>
+                            <div class="experience-location">Roermond, The Netherlands</div>
+                        </div>
+                    </div>
+                    <div class="experience-description">
+                        Led critical post-acquisition HR transformation initiatives, focusing on compliance, cultural integration, and process optimization through technology.
+                    </div>
+                    <ul class="experience-highlights">
+                        <li>Spearheaded HR-GDPR alignment post-acquisition, implementing streamlined data processing protocols</li>
+                        <li>Achieved 22% reduction in processing time while ensuring robust compliance and improved audit readiness</li>
+                        <li>Conducted comprehensive HR compliance and cultural integration analysis across 7 departments</li>
+                        <li>Used surveys, interviews, and focus groups to provide leadership with actionable insights for change management</li>
+                        <li>Piloted automated training review system, cutting process time by 45%</li>
+                        <li>Developed Power BI feedback dashboard that improved leader response rates by 30%</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div class="experience-title-group">
+                            <h3 class="experience-title">Organizational Change Analyst</h3>
+                            <div class="experience-company">Café de Opstand</div>
+                        </div>
+                        <div class="experience-meta">
+                            <div class="experience-duration">October 2024 - December 2024</div>
+                            <div class="experience-location">Nijmegen, The Netherlands</div>
+                        </div>
+                    </div>
+                    <div class="experience-description">
+                        Designed and implemented strategic frameworks to improve organizational effectiveness and volunteer engagement in a dynamic environment.
+                    </div>
+                    <ul class="experience-highlights">
+                        <li>Designed and implemented volunteer engagement and retention framework</li>
+                        <li>Achieved 40% increase in 2-month retention rates through strategic interventions</li>
+                        <li>Applied MECE and RCA methodologies for comprehensive organizational analysis</li>
+                        <li>Utilized survey feedback to guide operational shifts adopted by leadership</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div class="experience-title-group">
+                            <h3 class="experience-title">Partnerships Manager & Treasurer</h3>
+                            <div class="experience-company">Erasmus Student Network (Nijmegen)</div>
+                        </div>
+                        <div class="experience-meta">
+                            <div class="experience-duration">August 2024 - July 2025</div>
+                            <div class="experience-location">Nijmegen, The Netherlands</div>
+                        </div>
+                    </div>
+                    <div class="experience-description">
+                        Managed financial operations and strategic partnerships to drive organizational growth and sustainability.
+                    </div>
+                    <ul class="experience-highlights">
+                        <li>Managed €20,000 annual budget with full fiscal responsibility and transparency</li>
+                        <li>Developed strategic partnerships to strengthen organizational growth and revenue streams</li>
+                        <li>Implemented financial controls and reporting systems for improved fiscal sustainability</li>
+                        <li>Collaborated with leadership team to align partnership strategy with organizational goals</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section gray" id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">Key Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3 class="project-title">AI Chatbot for HR Self-Service</h3>
+                        <div class="project-date">September 2025</div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Developed a sophisticated HR chatbot prototype using React ChatBotify to revolutionize employee self-service capabilities. The solution addresses common HR queries while maintaining strict compliance standards.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">ChatBotify</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">GDPR Compliance</span>
+                            <span class="tech-tag">EU-AI Compliant</span>
+                        </div>
+                        <div class="project-impact">
+                            <strong>Impact:</strong> Demonstrated potential for reducing repetitive HR queries while improving employee experience through conversational AI in onboarding, policy navigation, and employee support.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3 class="project-title">Automated Job Application Bot & Scientific Probe</h3>
+                        <div class="project-date">September 2024</div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Engineered an innovative automated job application system using Python and LinkedIn integration, leveraging OpenAI API to streamline recruitment processes and explore application workflow efficiencies.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">LinkedIn API</span>
+                            <span class="tech-tag">OpenAI API</span>
+                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">Data Analysis</span>
+                        </div>
+                        <div class="project-impact">
+                            <strong>Impact:</strong> Successfully addressed recruitment inefficiencies, demonstrating advanced capability in HR tech solutions and process automation while reducing manual effort in application workflows.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section white" id="education">
+        <div class="container">
+            <h2 class="section-title fade-in">Education & Certifications</h2>
+            <div class="education-grid">
+                
+                <div class="education-card fade-in">
+                    <h3 class="education-degree">Master of Science (MSc)</h3>
+                    <div class="education-institution">Radboud University Nijmegen</div>
+                    <div class="education-details">
+                        Work, Organisation, & Health Psychology<br>
+                        Specialisation: HRM and Organisational Consultancy<br>
+                        September 2024 - July 2025
+                    </div>
+                    <span class="education-grade">GPA: 8.0</span>
+                </div>
+
+                <div class="education-card fade-in">
+                    <h3 class="education-degree">Bachelor's Degree</h3>
+                    <div class="education-institution">University of Padua, Italy</div>
+                    <div class="education-details">
+                        Psychological Sciences<br>
+                        September 2021 - July 2024
+                    </div>
+                    <span class="education-grade">105/110</span>
+                </div>
+
+                <div class="education-card fade-in">
+                    <h3 class="education-degree">Forward Learning Program - Core Skills</h3>
+                    <div class="education-institution">McKinsey.org Forward</div>
+                    <div class="education-details">
+                        Strategic thinking and problem-solving methodologies<br>
+                        July 2025
+                    </div>
+                    <span class="education-grade">Certified</span>
+                </div>
+
+                <div class="education-card fade-in">
+                    <h3 class="education-degree">BCG Strategy Consulting Job Sim</h3>
+                    <div class="education-institution">Forage</div>
+                    <div class="education-details">
+                        Strategic consulting methodologies and frameworks<br>
+                        April 2025
+                    </div>
+                    <span class="education-grade">Completed</span>
+                </div>
+
+                <div class="education-card fade-in">
+                    <h3 class="education-degree">Accenture Nordics - Consultant Job Sim</h3>
+                    <div class="education-institution">Forage</div>
+                    <div class="education-details">
+                        Management consulting and client engagement<br>
+                        April 2025
+                    </div>
+                    <span class="education-grade">Completed</span>
+                </div>
+
+                <div class="education-card fade-in">
+                    <h3 class="education-degree">Six Sigma White Belt Certification</h3>
+                    <div class="education-institution">Aveta Business Institute</div>
+                    <div class="education-details">
+                        Process improvement and quality management<br>
+                        February 2025
+                    </div>
+                    <span class="education-grade">Certified</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section gray" id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">Technical Skills & Expertise</h2>
+            
+            <div class="skills-category fade-in">
+                <h3>HRIS & Technology</h3>
+                <div class="skills-list">
+                    <span class="skill-item">Workday</span>
+                    <span class="skill-item">Oracle HCM</span>
+                    <span class="skill-item">SuccessFactors</span>
+                    <span class="skill-item">Power BI</span>
+                    <span class="skill-item">Power Automate</span>
+                    <span class="skill-item">Office 365</span>
+                    <span class="skill-item">RPA Systems</span>
+                    <span class="skill-item">Cloud-based HRIS</span>
+                </div>
+            </div>
+
+            <div class="skills-category fade-in">
+                <h3>HR & People Strategy</h3>
+                <div class="skills-list">
+                    <span class="skill-item">Strategic HR Planning</span>
+                    <span class="skill-item">Organizational Development</span>
+                    <span class="skill-item">Change Management</span>
+                    <span class="skill-item">Compliance Management</span>
+                    <span class="skill-item">GDPR Compliance</span>
+                    <span class="skill-item">Talent Mobility</span>
+                    <span class="skill-item">Cultural Integration</span>
+                    <span class="skill-item">Stakeholder Engagement</span>
+                </div>
+            </div>
+
+            <div class="skills-category fade-in">
+                <h3>Analytical & Problem-Solving</h3>
+                <div class="skills-list">
+                    <span class="skill-item">Root Cause Analysis (RCA)</span>
+                    <span class="skill-item">MECE Framework</span>
+                    <span class="skill-item">Data Analysis</span>
+                    <span class="skill-item">Strategic Thinking</span>
+                    <span class="skill-item">Process Optimization</span>
+                    <span class="skill-item">Project Management</span>
+                    <span class="skill-item">Problem-Solving</span>
+                </div>
+            </div>
+
+            <div class="skills-category fade-in">
+                <h3>Programming & Development</h3>
+                <div class="skills-list">
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">React</span>
+                    <span class="skill-item">API Integration</span>
+                    <span class="skill-item">Automation</span>
+                    <span class="skill-item">AI/ML Applications</span>
+                    <span class="skill-item">ChatBot Development</span>
+                </div>
+            </div>
+
+            <div class="skills-category fade-in">
+                <h3>Soft Skills & Leadership</h3>
+                <div class="skills-list">
+                    <span class="skill-item">Adaptability & Resilience</span>
+                    <span class="skill-item">Cross-cultural Communication</span>
+                    <span class="skill-item">Team Coordination</span>
+                    <span class="skill-item">Budget Management</span>
+                    <span class="skill-item">Partnership Development</span>
+                    <span class="skill-item">Change Leadership</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="mailto:karthikgmenon.kgm@gmail.com">Email</a>
+                <a href="tel:+310614516045">Phone</a>
+                <a href="#linkedin">LinkedIn</a>
+                <a href="#portfolio">Portfolio</a>
+            </div>
+            <p>&copy; 2025 Karthik Gokuladas Menon. All rights reserved. | Driving organizational excellence through people-centric strategies and digital HR transformation.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Back to top button functionality
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(0,0,0,0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(255, 215, 0, 0.2)';
+            } else {
+                nav.style.background = 'rgba(0,0,0,0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
